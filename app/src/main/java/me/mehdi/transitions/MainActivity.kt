@@ -2,9 +2,8 @@ package me.mehdi.transitions
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.ChangeBounds
-import android.transition.Scene
-import android.transition.TransitionManager
+import android.service.autofill.ImageTransformation
+import android.transition.*
 import android.view.ViewGroup
 import android.widget.Button
 import me.mehdi.transitions.ui.main.MainFragment
@@ -29,14 +28,17 @@ class MainActivity : AppCompatActivity() {
         val scene = Scene.getSceneForLayout(root, R.layout.main_activity, this);
         val sceneLogin = Scene.getSceneForLayout(root, R.layout.main_activity_login, this);
         val sceneRegister = Scene.getSceneForLayout(root, R.layout.main_activity_register, this);
-        val transitionMgr = TransitionManager();
+
+        val set = TransitionSet();
+
+        set.addTransition(ChangeBounds()).addTransition(Fade()).addTransition(AutoTransition());
 
         login.setOnClickListener {
-            TransitionManager.go(sceneLogin, ChangeBounds());
+            TransitionManager.go(sceneLogin, set);
         }
 
         register.setOnClickListener {
-            TransitionManager.go(sceneRegister, ChangeBounds());
+            TransitionManager.go(sceneRegister, set);
         }
 
     }
