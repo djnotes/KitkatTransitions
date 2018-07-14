@@ -63,8 +63,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onBackPressed() {
         if(animationStarted) {
-            val root = findViewById<ViewGroup>(R.id.root);
-            TransitionManager.go(scene, ChangeBounds() );
+            TransitionManager.go(scene, TransitionSet().addTransition(Fade()).addTransition(ChangeBounds()).setDuration(2000) );
             animationStarted = false;
             login = findViewById(R.id.login)
             register = findViewById(R.id.register)
